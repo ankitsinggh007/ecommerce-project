@@ -1,7 +1,6 @@
 const User = require("../models/User");
 const productService = require("../services/productService");
 const userService = require("../services/userService");
-const sendEmail = require("../utils/passwordRecover");
 const cloudinary = require("cloudinary").v2;
 const userservice = new userService();
 
@@ -97,11 +96,11 @@ const forgotPassword = async (req, res, next) => {
     )}/password/reset/${resetToken}`;
 
     const message = `Your password reset token is :- \n\n ${resetPasswordUrl} \n\nIf you have not requested this email then, please ignore it.`;
-    await sendEmail({
-      email: User.email,
-      subject: `Ecommerce Password Recovery`,
-      message,
-    });
+    // await sendEmail({
+    //   email: User.email,
+    //   subject: `Ecommerce Password Recovery`,
+    //   message,
+    // });
     res.status(200).json({
       success: true,
       message: `Email sent to ${User.email} successfully`,
