@@ -7,7 +7,7 @@ if(process.env.NODE_ENV !== 'PRODUCTION'){
     require('dotenv').config({path:"api/config/Config.env"});
 
 }
-const app=require('./app');
+const app=require('./index.js');
 
 
 const connect=async()=>{
