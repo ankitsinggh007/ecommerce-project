@@ -1,6 +1,7 @@
 // Warning
 // const { creatInBulk, json, deleteInBulk } = require('./Fakedata');
-
+const Connect = require('./config/databseConfig');
+const cloudinary=require('cloudinary').v2;
 const express=require('express');
 const cookieParser=require('cookie-parser');
 const errorMidlleware=require('./middleware/error');
@@ -28,4 +29,20 @@ app.get("*", (req, res) => {
 
 app.use(errorMidlleware);
 
-module.exports=app;
+
+const connect=async()=>{
+  try {
+      await Connect(process.env.Mongo_URI);
+      app.listen(process.env.PORT,()=>{
+          console.log(`development server started on ${process.env.PORT}`);
+      });
+  } catch (error) {
+      throw error;
+  }
+}
+cloudinary.config({ 
+  cloud_name: 'df9ovzwh6',
+  api_key: 959872715293163,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});    
+connect();
