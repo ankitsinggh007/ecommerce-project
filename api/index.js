@@ -11,10 +11,10 @@ const app=express();
 app.use(fileUpload({
     useTempFiles:true
 }));
-// if(process.env.NODE_ENV !== 'PRODUCTION'){
-//     require('dotenv').config({path:"api/config/Config.env"});
+if(process.env.NODE_ENV !== 'PRODUCTION'){
+    require('dotenv').config({path:"api/config/Config.env"});
 
-// }
+}
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({extended:true}));
